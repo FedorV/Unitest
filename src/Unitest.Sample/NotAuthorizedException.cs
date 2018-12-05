@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HockyTest.Sample
+namespace Unitest.Sample
 {
     public class NotAuthorizedException: Exception
     {

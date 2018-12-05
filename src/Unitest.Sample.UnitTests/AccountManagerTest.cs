@@ -1,10 +1,10 @@
 ﻿using System;
-using FluentAssertions;
 using System.Threading.Tasks;
+using FluentAssertions;
 using NSubstitute;
 using Xunit;
 
-namespace HockyTest.Sample.UnitTests
+namespace Unitest.Sample.UnitTests
 {
     public class AccountManagerTest : TestWith<AccountManagerFixture, AccountManager>
     {

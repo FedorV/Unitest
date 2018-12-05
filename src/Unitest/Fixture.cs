@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using AutofacContrib.NSubstitute;
 
-namespace HockyTest
+namespace Unitest
 {
     public class Fixture
     {

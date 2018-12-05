@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HockyTest.Sample
+namespace Unitest.Sample
 {
     public interface IAuthorizer
     {

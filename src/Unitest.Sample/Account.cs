@@ -1,4 +1,4 @@
-﻿namespace HockyTest.Sample
+﻿namespace Unitest.Sample
 {
     public class Account
     {

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unitest.Sample", "src\Unite
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unitest.Sample.UnitTests", "src\Unitest.Sample.UnitTests\Unitest.Sample.UnitTests.csproj", "{217D1A00-62AA-4532-972E-0F0E070F7CFD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutofacContrib.NSubstitute", "..\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute.csproj", "{D9ED7847-4738-4212-BE01-47BB6F17D991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{217D1A00-62AA-4532-972E-0F0E070F7CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217D1A00-62AA-4532-972E-0F0E070F7CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217D1A00-62AA-4532-972E-0F0E070F7CFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9ED7847-4738-4212-BE01-47BB6F17D991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9ED7847-4738-4212-BE01-47BB6F17D991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9ED7847-4738-4212-BE01-47BB6F17D991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9ED7847-4738-4212-BE01-47BB6F17D991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

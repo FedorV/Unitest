@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute.csproj" />
+    <ProjectReference Include="..\..\..\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute\AutofacContrib.NSubstitute.csproj" />
   </ItemGroup>
+
 
 </Project>

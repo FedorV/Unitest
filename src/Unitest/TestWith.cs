@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 
-namespace HockyTest
+namespace Unitest
 {
     public class TestWith<TFixture, TSystemUnderTest>
         where TFixture : Fixture

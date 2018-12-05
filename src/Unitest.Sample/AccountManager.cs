@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace HockyTest.Sample
+namespace Unitest.Sample
 {
     public class AccountManager
     {
