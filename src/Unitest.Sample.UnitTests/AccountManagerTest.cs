@@ -21,12 +21,12 @@ namespace Unitest.Sample.UnitTests
             Given().ValidAccountExistsInDatabase(AccountFrom, 1000);
             And().ValidAccountExistsInDatabase(AccountTo, 0);
 
-            var action = new Action(async () => 
+            var action = new Action(() =>
             {
-                await SUT<AccountManager>().TransferMoney(10, "12345", "12345", new User());
+                SUT<AccountManager>().TransferMoney(10, "12345", "12345", new User()).GetAwaiter().GetResult();
             });
 
-            action.Should().Throw<InvalidOperationException>("because cannot transfer money to same account");
+            action.Should().Throw<ArgumentException>("because cannot transfer money to same account");
         }
     }
 
