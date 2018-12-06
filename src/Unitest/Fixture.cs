@@ -15,6 +15,14 @@ namespace Unitest
             Mocks = new Dictionary<Type, object>();
         }
 
+        public static TFixture Given<TFixture>()
+            where TFixture : Fixture, new()
+        {
+            var fixture = new TFixture();
+            fixture.Initialize();
+            return fixture;
+        }
+
         protected T SubstituteFor<T>()
             where T: class
         {
@@ -31,6 +39,11 @@ namespace Unitest
         public T Resolve<T>()
         {
             return MockContext.Resolve<T>();
+        }
+
+        public virtual void Initialize()
+        {
+
         }
     }
 

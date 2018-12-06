@@ -6,10 +6,14 @@ using Xunit;
 
 namespace Unitest.Sample.UnitTests
 {
-    public class AccountManagerTest : TestWith<AccountManagerFixture, AccountManager>
+    public class AccountManagerTest: TestWith<AccountManagerFixture> //IClassFixture<AccountManagerFixture> 
     {
         private readonly string AccountFrom = "12345";
         private readonly string AccountTo = "54321";
+
+        public AccountManagerTest(AccountManagerFixture fixture)
+            : base(fixture)
+        { }
 
         [Fact]
         public async Task FirstTest()
@@ -19,7 +23,7 @@ namespace Unitest.Sample.UnitTests
 
             var action = new Action(async () => 
             {
-                await SUT.TransferMoney(10, "12345", "12345", new User());
+                await SUT<AccountManager>().TransferMoney(10, "12345", "12345", new User());
             });
 
             action.Should().Throw<InvalidOperationException>("because cannot transfer money to same account");

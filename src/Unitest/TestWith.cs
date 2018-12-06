@@ -1,36 +1,46 @@
 ﻿using System;
 using FluentAssertions;
+using Xunit;
 
 namespace Unitest
 {
-    public class TestWith<TFixture, TSystemUnderTest>
-        where TFixture : Fixture
-        where TSystemUnderTest : class
+    public class TestWith<TFixture>: IClassFixture<TFixture>
+        where TFixture : Fixture, new()
     {
-        public TFixture Fixture { get; set; }
+        protected readonly TFixture _fixture;
 
-        public TSystemUnderTest SUT
+        public TestWith(TFixture fixture)
         {
-            get
-            {
-                if (Fixture == null)
-                    Given();
+            _fixture = fixture;
+        }
 
-                return Fixture.Resolve<TSystemUnderTest>();
-            }
+        //public TSystemUnderTest SUT
+        //{
+        //    get
+        //    {
+        //        if (Fixture == null)
+        //            Given();
+
+        //        return Fixture.Resolve<TSystemUnderTest>();
+        //    }
+        //}
+
+        public TSUT SUT<TSUT>()
+        {
+            return _fixture.Resolve<TSUT>();
         }
 
         public virtual TFixture Given()
         {
-            return Fixture ?? (Fixture = default(TFixture));
+            return Fixture.Given<TFixture>();
         }
 
         public virtual TFixture And()
         {
-            if (Fixture == null)
+            if (_fixture == null)
                 throw new InvalidOperationException("Expected Given to be called before And can be called. Fixture must be created first and Fixture supposed to be created inside Given.");
 
-            return Fixture;
+            return _fixture;
         }
 
         public void ShouldThrowException<TException>(Action action)
