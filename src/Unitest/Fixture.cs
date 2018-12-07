@@ -7,7 +7,7 @@ namespace Unitest
     public class Fixture
     {
         public AutoSubstitute MockContext { get; }
-        private Dictionary<Type, object> Mocks { get; set; }
+        internal Dictionary<Type, object> Mocks { get; set; }
 
         protected Fixture()
         {
@@ -23,7 +23,7 @@ namespace Unitest
             return fixture;
         }
 
-        protected T SubstituteFor<T>()
+        internal protected T SubstituteFor<T>()
             where T: class
         {
             var type = typeof(T);
@@ -44,15 +44,6 @@ namespace Unitest
         public virtual void Initialize()
         {
 
-        }
-    }
-
-    public static class FixtureForExtensions
-    {
-        public static TFixture And<TFixture>(this TFixture fixture)
-            where TFixture: Fixture
-        {
-            return fixture;
         }
     }
 }
