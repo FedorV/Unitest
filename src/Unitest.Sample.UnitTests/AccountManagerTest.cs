@@ -123,7 +123,7 @@ namespace Unitest.Sample.UnitTests
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountDoesNotHaveEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountDoesNotHaveEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 Func<Task> whenITransferMoney = async () =>
                 {
@@ -142,7 +142,7 @@ namespace Unitest.Sample.UnitTests
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 await When.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
 
@@ -155,7 +155,7 @@ namespace Unitest.Sample.UnitTests
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 await When.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
 
@@ -168,7 +168,7 @@ namespace Unitest.Sample.UnitTests
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 await When.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
 
@@ -181,7 +181,7 @@ namespace Unitest.Sample.UnitTests
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 // When
                 var transactionResult = await SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
@@ -255,7 +255,7 @@ namespace Unitest.Sample.UnitTests
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountDoesNotHaveEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountDoesNotHaveEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 Func<Task> whenIWithdraw = async () =>
                 {
@@ -273,7 +273,7 @@ namespace Unitest.Sample.UnitTests
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 await When.Withdraw(WithdrawalAmount, FromAccount, User);
 
@@ -285,7 +285,7 @@ namespace Unitest.Sample.UnitTests
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 await When.Withdraw(WithdrawalAmount, FromAccount, User);
 
@@ -299,7 +299,7 @@ namespace Unitest.Sample.UnitTests
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
-                And.AccountHasEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
+                And.AccountHasEnoughFundsForWithdrawal(FromAccount, WithdrawalAmount);
 
                 // When
                 var transactionResult = await SUT.Withdraw(WithdrawalAmount, FromAccount, User);

@@ -25,7 +25,7 @@ namespace Unitest.Sample.UnitTests
             return this;
         }
 
-        public AccountManagerFixture AccountDoesNotHaveEnoughFundsForWithdraw(string accountNumber, decimal withdrawalAmount)
+        public AccountManagerFixture AccountDoesNotHaveEnoughFundsForWithdrawal(string accountNumber, decimal withdrawalAmount)
         {
             SubstituteFor<IAccountRepository>()
                 .GetBalance(Arg.Is<Account>(x => x.Number == accountNumber))
@@ -33,7 +33,7 @@ namespace Unitest.Sample.UnitTests
             return this;
         }
 
-        public AccountManagerFixture AccountHasEnoughFundsForWithdraw(string accountNumber, decimal withdrawalAmount)
+        public AccountManagerFixture AccountHasEnoughFundsForWithdrawal(string accountNumber, decimal withdrawalAmount)
         {
             SubstituteFor<IAccountRepository>()
                 .GetBalance(Arg.Is<Account>(x => x.Number == accountNumber))
