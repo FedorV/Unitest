@@ -32,15 +32,15 @@ namespace Unitest.Sample.UnitTests
             [InlineData(-1000)]
             [InlineData(-1)]
             [InlineData(0)]
-            public async Task WhenAmountIsLessThenMinimumAllowed_ShouldThrowArgumentException(decimal amount)
+            public void WhenAmountIsLessThenMinimumAllowed_ShouldThrowArgumentException(decimal amount)
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(amount, FromAccount, ToAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(amount, FromAccount, ToAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -49,15 +49,15 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenTransferringFromAndToAreTheSameAccount_ThenShouldThrowArgumentException()
+            public void WhenTransferringFromAndToAreTheSameAccount_ThenShouldThrowArgumentException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(WithdrawalAmount, FromAccount, FromAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(WithdrawalAmount, FromAccount, FromAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -66,15 +66,15 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenFromAccountDoesNotExist_ShouldThrowArgumentException()
+            public void WhenFromAccountDoesNotExist_ShouldThrowArgumentException()
             {
                 Given.AccountDoesNotExist(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -83,15 +83,15 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenToAccountDoesNotExist_ShouldThrowArgumentException()
+            public void WhenToAccountDoesNotExist_ShouldThrowArgumentException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.AccountDoesNotExist(ToAccount);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -100,16 +100,16 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenUserDoesNotHaveAccessToAccount_ShouldThrowArgumentException()
+            public void WhenUserDoesNotHaveAccessToAccount_ShouldThrowArgumentException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsNotAuthorisedToWithdraw(FromAccount, User);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -118,17 +118,17 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenAccountDoesNotHaveEnoughFunds_ShouldInvalidOperationException()
+            public void WhenAccountDoesNotHaveEnoughFunds_ShouldInvalidOperationException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
                 And.AccountDoesNotHaveEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
 
-                var whenITransferMoney = new Action(() =>
+                Func<Task> whenITransferMoney = async () =>
                 {
-                    SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.TransferMoney(WithdrawalAmount, FromAccount, ToAccount, User);
+                };
 
                 whenITransferMoney
                     .Then()
@@ -202,14 +202,14 @@ namespace Unitest.Sample.UnitTests
             [InlineData(-1)]
             [InlineData(0)]
             [InlineData(-1000)]
-            public async Task WhenAmountIsLessThenMinimumAllowed_ShouldThrowArgumentException(int amount)
+            public void WhenAmountIsLessThenMinimumAllowed_ShouldThrowArgumentException(int amount)
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
 
-                var whenIWithdraw = new Action(() =>
+                Func<Task> whenIWithdraw = async () =>
                 {
-                    SUT.Withdraw(amount, FromAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.Withdraw(amount, FromAccount, User);
+                };
 
                 whenIWithdraw
                     .Then()
@@ -218,14 +218,14 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenAccountDoesNotExist_ShouldThrowArgumentException()
+            public void WhenAccountDoesNotExist_ShouldThrowArgumentException()
             {
                 Given.AccountDoesNotExist(FromAccount);
 
-                var whenIWithdraw = new Action(() =>
+                Func<Task> whenIWithdraw = async () =>
                 {
-                    SUT.Withdraw(WithdrawalAmount, FromAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.Withdraw(WithdrawalAmount, FromAccount, User);
+                };
 
                 whenIWithdraw
                     .Then()
@@ -234,15 +234,15 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenUserDoesNotHaveAccessToAccount_ShouldThrowArgumentException()
+            public void WhenUserDoesNotHaveAccessToAccount_ShouldThrowArgumentException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsNotAuthorisedToWithdraw(FromAccount, User);
 
-                var whenIWithdraw = new Action(() =>
+                Func<Task> whenIWithdraw = async () =>
                 {
-                    SUT.Withdraw(10, FromAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.Withdraw(10, FromAccount, User);
+                };
 
                 whenIWithdraw
                     .Then()
@@ -251,16 +251,16 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenAccountDoesNotHaveEnoughFunds_ShouldInvalidOperationException()
+            public void WhenAccountDoesNotHaveEnoughFunds_ShouldInvalidOperationException()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
                 And.AccountDoesNotHaveEnoughFundsForWithdraw(FromAccount, WithdrawalAmount);
 
-                var whenIWithdraw = new Action(() =>
+                Func<Task> whenIWithdraw = async () =>
                 {
-                    SUT.Withdraw(WithdrawalAmount, FromAccount, User).GetAwaiter().GetResult();
-                });
+                    await SUT.Withdraw(WithdrawalAmount, FromAccount, User);
+                };
 
                 whenIWithdraw
                     .Then()
@@ -317,14 +317,14 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task WhenAccountDoesNotExist_ShouldThrowArgumentException()
+            public void WhenAccountDoesNotExist_ShouldThrowArgumentException()
             {
                 Given.AccountDoesNotExist(ToAccount);
 
-                var whenIDeposit = new Action(() =>
+                Func<Task> whenIDeposit = async () => 
                 {
-                    SUT.Deposit(DepositAmount, ToAccount).GetAwaiter().GetResult();
-                });
+                    await SUT.Deposit(DepositAmount, ToAccount);
+                };
 
                 whenIDeposit
                     .Then()
