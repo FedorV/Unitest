@@ -21,7 +21,7 @@ namespace Unitest.Sample.UnitTests
             Name = "Mr. Haacker"
         };
 
-        public class TransferMoneyTests : TestWith<AccountManagerFixture, AccountManager>
+        public class TransferMoneyTests : TestWith<AccountManagerFixture, AccountManager>, IClassFixture<AccountManagerFixture>
         {
             public TransferMoneyTests(AccountManagerFixture fixture)
                 : base(fixture)
@@ -191,7 +191,7 @@ namespace Unitest.Sample.UnitTests
             }
         }
 
-        public class WithdrawTests : TestWith<AccountManagerFixture, AccountManager>
+        public class WithdrawTests : TestWith<AccountManagerFixture, AccountManager>, IClassFixture<AccountManagerFixture>
         {
             public WithdrawTests(AccountManagerFixture fixture)
                 : base(fixture)
@@ -309,7 +309,7 @@ namespace Unitest.Sample.UnitTests
             }
         }
 
-        public class DepositTests : TestWith<AccountManagerFixture, AccountManager>
+        public class DepositTests : TestWith<AccountManagerFixture, AccountManager>, IClassFixture<AccountManagerFixture>
         {
             public DepositTests(AccountManagerFixture fixture)
                 : base(fixture)
