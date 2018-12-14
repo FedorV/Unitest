@@ -6,9 +6,9 @@
         <Authors>FV</Authors>
         <Product>Unitest</Product>
         <Copyright>FV (c) 2018</Copyright>
-        <Version>0.0.1</Version>
+        <Version>0.0.1</Version>surf rid
         <RepositoryUrl>https://github.com/FedorV/Unitest.git</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/FedorV/Unitest/blob/master/LICENSE</PackageLicenseUrl>
+        <License>https://github.com/FedorV/Unitest/blob/master/LICENSE</License>
     </PropertyGroup>
 
     <ItemGroup>
