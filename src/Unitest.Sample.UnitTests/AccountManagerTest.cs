@@ -163,7 +163,7 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task AfterSuccessfulWithdrawal_ShouldCommitDatabbaseTransaction()
+            public async Task AfterSuccessfulWithdrawal_ShouldCommitDatabaseTransaction()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.ValidAccountExistsInDatabase(ToAccount);
@@ -281,7 +281,7 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task AfterSuccessfulWithdrawal_ShouldCommitDatabbaseTransaction()
+            public async Task AfterSuccessfulWithdrawal_ShouldCommitDatabaseTransaction()
             {
                 Given.ValidAccountExistsInDatabase(FromAccount);
                 And.UserIsAuthorisedToWithdraw(FromAccount, User);
@@ -343,7 +343,7 @@ namespace Unitest.Sample.UnitTests
             }
 
             [Fact]
-            public async Task AfterSuccessfulDeposit_ShouldCommitDatabbaseTransaction()
+            public async Task AfterSuccessfulDeposit_ShouldCommitDatabaseTransaction()
             {
                 Given.ValidAccountExistsInDatabase(ToAccount);
 
