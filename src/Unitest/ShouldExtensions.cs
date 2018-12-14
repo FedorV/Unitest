@@ -5,6 +5,9 @@ using FluentAssertions.Specialized;
 
 namespace Unitest
 {
+    /// <summary>
+    /// Some more of the syntactic sugar to make tests more look like Gherkin language
+    /// </summary>
     public static class ShouldExtensions
     {
         public static ActionAssertions Then(this Action action)

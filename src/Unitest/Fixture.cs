@@ -4,9 +4,19 @@ using AutofacContrib.NSubstitute;
 
 namespace Unitest
 {
+    /// <summary>
+    /// Test fixture that suppose to contain test setup and some of the helper methods like VerifyTransactionCommitted 
+    /// </summary>
     public class Fixture
     {
+        /// <summary>
+        ///  Expose the context to allow some non trivial scenarios
+        /// </summary>
         public AutoSubstitute MockContext { get; }
+
+        /// <summary>
+        /// List of mock for the current context to not re-define already used ones
+        /// </summary>
         internal Dictionary<Type, object> Mocks { get; set; }
 
         protected Fixture()
@@ -15,35 +25,50 @@ namespace Unitest
             Mocks = new Dictionary<Type, object>();
         }
 
+        /// <summary>
+        /// Syntactic sugar to access Fixture instance, for tests readability 
+        /// </summary>
         public static TFixture Given<TFixture>()
             where TFixture : Fixture, new()
         {
             var fixture = new TFixture();
-            fixture.Initialize();
+            fixture.Initialize(); // do common setup
             return fixture;
         }
 
-        internal protected T SubstituteFor<T>()
-            where T: class
-        {
-            var type = typeof(T);
-
-            if (!Mocks.ContainsKey(type))
-            {
-                Mocks.Add(type, MockContext.SubstituteFor<T>());
-            }
-
-            return (T)Mocks[type];
-        }
-
+        /// <summary>
+        /// Resolves a type from mock context, mainly designed to use to build SUT
+        /// </summary>
         public T Resolve<T>()
         {
             return MockContext.Resolve<T>();
         }
 
+        /// <summary>
+        /// Overwrite this to provide common setup for many unit tests
+        /// e.g. to mock HttpContext or other common dependency
+        /// </summary>
         public virtual void Initialize()
         {
 
+        }
+
+        /// <summary>
+        /// Adds a mocked dependency of a type TMock
+        /// </summary>
+        /// <typeparam name="TMock">Type of mocking dependency</typeparam>
+        /// <returns>Mocked dependency</returns>
+        internal protected TMock SubstituteFor<TMock>()
+            where TMock : class
+        {
+            var type = typeof(TMock);
+
+            if (!Mocks.ContainsKey(type))
+            {
+                Mocks.Add(type, MockContext.SubstituteFor<TMock>());
+            }
+
+            return (TMock)Mocks[type];
         }
     }
 }
