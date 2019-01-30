@@ -12,7 +12,7 @@ namespace Unitest
         /// <summary>
         ///  Expose the context to allow some non trivial scenarios
         /// </summary>
-        public AutoSubstitute MockContext { get; }
+        public AutoSubstitute MockContext { get; private set; }
 
         /// <summary>
         /// List of mock for the current context to not re-define already used ones
@@ -45,12 +45,22 @@ namespace Unitest
         }
 
         /// <summary>
+        /// Provides an instance of type T to include in the mock context
+        /// </summary>
+        public void Provide<T>(T instance)
+            where T : class
+        {
+            MockContext.Provide(instance);
+        }
+
+        /// <summary>
         /// Overwrite this to provide common setup for many unit tests
         /// e.g. to mock HttpContext or other common dependency
         /// </summary>
         public virtual void Initialize()
         {
-
+            MockContext = new AutoSubstitute();
+            Mocks = new Dictionary<Type, object>();
         }
 
         /// <summary>

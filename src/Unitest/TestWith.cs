@@ -14,9 +14,11 @@ namespace Unitest
         protected readonly TFixture Fixture;
         private TSystemUnderTest _sut = null;
 
-        public TestWith(TFixture fixture)
+        public TestWith(TFixture fixture, bool isolateTestRuns = true)
         {
             Fixture = fixture ?? throw new ArgumentException($"Fixture cannot be null. Fixture supposed to be created on test initialization.");
+            if (isolateTestRuns)
+                Fixture.Initialize();
         }
 
         /// <summary>
