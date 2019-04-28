@@ -6,16 +6,16 @@
         <Authors>FV</Authors>
         <Product>Unitest</Product>
         <Copyright>FV (c) 2019</Copyright>
-        <Version>0.0.3</Version>
+        <Version>0.1.0</Version>
         <RepositoryUrl>https://github.com/FedorV/Unitest.git</RepositoryUrl>
         <License>https://github.com/FedorV/Unitest/blob/master/LICENSE</License>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="4.8.1" />
-        <PackageReference Include="Castle.Core" Version="4.3.1" />
-        <PackageReference Include="NSubstitute" Version="3.1.0" />
-        <PackageReference Include="FluentAssertions" Version="5.5.3" />
+        <PackageReference Include="Autofac" Version="4.9.2" />
+        <PackageReference Include="Castle.Core" Version="4.4.0" />
+        <PackageReference Include="NSubstitute" Version="4.0.0" />
+        <PackageReference Include="FluentAssertions" Version="5.6.0" />
     </ItemGroup>
 
 </Project>
